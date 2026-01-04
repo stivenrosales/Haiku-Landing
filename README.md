@@ -1,73 +1,201 @@
-# Welcome to your Lovable project
+# Haiku Landing - Lista de Espera
 
-## Project info
+Landing page profesional para la lista de espera de la comunidad Skool de Haiku, enfocada en automatización empresarial, Airtable y tecnología No-Code.
 
-**URL**: https://lovable.dev/projects/1746e044-7495-4dc4-a4b8-2536cdb4ba5e
+![Haiku Logo](public/haiku-logo.svg)
 
-## How can I edit this code?
+## 🌟 Características
 
-There are several ways of editing your application.
+- **Formulario de Lista de Espera**: Captura nombre, apellido y email con validación completa
+- **3 Áreas de Aprendizaje**:
+  - N8N & Airtable - Automatización y bases de datos No-Code
+  - Vibe Coding - Programación con IA
+  - Gestión Empresarial - Sistemas y procesos tecnológicos
+- **Seguridad Robusta**:
+  - Rate limiting (3 solicitudes por minuto)
+  - Sanitización de inputs
+  - Validación CORS
+  - Headers de seguridad
+- **SEO Optimizado**: Meta tags, Open Graph, Twitter Cards y datos estructurados
+- **Diseño Responsivo**: Optimizado para móviles, tablets y desktop
+- **Política de Privacidad**: Página completa conforme a regulaciones
 
-**Use Lovable**
+## 🎨 Diseño
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1746e044-7495-4dc4-a4b8-2536cdb4ba5e) and start prompting.
+- **Color Principal**: `#00A370` (HSL: 162 100% 32%) - Verde esmeralda
+- **Framework CSS**: Tailwind CSS
+- **Componentes UI**: Shadcn/ui
+- **Fuente**: Sistema (San Francisco en macOS, Segoe UI en Windows)
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tecnologías
 
-**Use your preferred IDE**
+- **Frontend**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **UI Components**: Shadcn/ui
+- **Form Handling**: React Hooks
+- **Validación**: Custom security utilities
+- **Webhook**: n8n integration
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 📦 Instalación
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+# Clonar el repositorio
+git clone git@github.com:stivenrosales/Haiku-Landing.git
 
-Follow these steps:
+# Navegar al directorio
+cd Haiku-Landing
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Instalar dependencias
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Iniciar servidor de desarrollo
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+El servidor se ejecutará en `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🚀 Scripts Disponibles
 
-**Use GitHub Codespaces**
+```bash
+# Desarrollo
+npm run dev
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Build para producción
+npm run build
 
-## What technologies are used for this project?
+# Preview del build
+npm run preview
 
-This project is built with:
+# Linting
+npm run lint
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🔧 Configuración
 
-## How can I deploy this project?
+### Webhook n8n
 
-Simply open [Lovable](https://lovable.dev/projects/1746e044-7495-4dc4-a4b8-2536cdb4ba5e) and click on Share -> Publish.
+Actualiza la URL del webhook en `src/lib/security.ts`:
 
-## Can I connect a custom domain to my Lovable project?
+```typescript
+export const WEBHOOK_CONFIG = {
+  url: 'TU_WEBHOOK_URL_AQUI',
+  timeout: 10000
+};
+```
 
-Yes, you can!
+### Variables de Entorno
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Crea un archivo `.env` para configuraciones sensibles:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+```env
+VITE_WEBHOOK_URL=tu_webhook_url
+```
+
+## 📁 Estructura del Proyecto
+
+```
+haiku-landing-craft-main/
+├── public/                 # Archivos estáticos
+│   ├── car1-logo.png      # Logo N8N & Airtable
+│   ├── car2-logo.svg      # Logo Vibe Coding
+│   ├── car3-logo.png      # Logo Gestión Empresarial
+│   ├── haiku-logo.svg     # Logo principal
+│   └── favicon.svg        # Favicon
+├── src/
+│   ├── components/ui/     # Componentes Shadcn/ui
+│   ├── lib/
+│   │   ├── security.ts    # Utilidades de seguridad
+│   │   └── utils.ts       # Utilidades generales
+│   ├── pages/
+│   │   ├── Index.tsx      # Página principal
+│   │   ├── Privacy.tsx    # Política de privacidad
+│   │   └── NotFound.tsx   # Página 404
+│   ├── index.css          # Estilos globales
+│   └── main.tsx           # Entry point
+├── email-template-waitlist.html  # Template de email
+├── index.html             # HTML principal
+├── tailwind.config.ts     # Configuración Tailwind
+└── vite.config.ts         # Configuración Vite
+```
+
+## 🔒 Seguridad
+
+El proyecto implementa múltiples capas de seguridad:
+
+- **Rate Limiting**: Previene spam limitando solicitudes por IP
+- **Input Sanitization**: Limpia y valida todos los datos de usuario
+- **CORS Validation**: Verifica el origen de las solicitudes
+- **Security Headers**: Headers HTTP seguros
+- **Email Validation**: Regex robusto para validación de emails
+
+## 📝 Política de Privacidad
+
+La landing incluye una página completa de política de privacidad accesible en `/privacy` que detalla:
+
+- Datos recopilados
+- Uso de la información
+- Derechos del usuario
+- Seguridad de datos
+- Cumplimiento legal
+
+## 🌐 Deployment
+
+### Vercel (Recomendado)
+
+```bash
+# Instalar Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+### Netlify
+
+```bash
+# Build
+npm run build
+
+# El directorio dist/ está listo para deployment
+```
+
+### Configuración adicional
+
+El proyecto incluye `vercel.json` con configuración de rutas SPA.
+
+## 📧 Integración con Email
+
+El proyecto incluye un template HTML de email (`email-template-waitlist.html`) listo para usar con servicios de email marketing o n8n.
+
+**Características del template**:
+- Logo y branding de Haiku
+- Diseño responsive
+- Compatible con clientes de email
+- Fuente Helvetica Neue
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor:
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto es privado y propiedad de Haiku.
+
+## 👥 Contacto
+
+**Email**: stivenrosales01@gmail.com
+
+**GitHub**: [@stivenrosales](https://github.com/stivenrosales)
+
+---
+
+🤖 Desarrollado con [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
